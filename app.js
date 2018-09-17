@@ -15,10 +15,9 @@ var express    = require("express"),
 var commentRoutes = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     authRoutes = require("./routes/index");
-    
-mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
-//mongoose.connect("mongodb://alex:smol1996@ds159812.mlab.com:59812/yelpcamp", { useNewUrlParser: true });
 
+var dburl = process.env.DATABASEURL || "mongodb://localhost:27017/yelp_camp";
+mongoose.connect(dburl, { useNewUrlParser: true }); //DATABASEURL is an environment var
 
 app.use(bodyParse.urlencoded({extended: true}));
 app.set("view engine", "ejs");
